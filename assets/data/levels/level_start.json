@@ -1,0 +1,45 @@
+{
+    "GameObjects": [
+        {
+            "Prefab":"Sprite",
+            "Name":"TestSprite",
+            "Transform": {
+                "Position":[0,0,0],
+                "Rotation":[0,0,0,1],
+                "Scale":[1,1,1]
+            },
+            "SceneComponentsOverrides": {
+                "SpriteRenderer": {
+                    "Texture":"testimage.png",
+                    "Transform": {
+                        "Position":[300,300,0]
+                    }
+                }
+            },
+            "SimulationComponentsOverrides": {
+
+            }
+        },
+        {
+            "Prefab":"Sprite",
+            "Name":"TestSprite2",
+            "Transform": {
+                "Position":[0,0,0],
+                "Rotation":[0,0,0,1],
+                "Scale":[1,1,1]
+            },
+            "SceneComponentsOverrides": {
+                "SpriteRenderer": {
+                    "Texture":"testimage2.png",
+                    "Transform": {
+                        "Position":[600,600,0]
+                    }
+                }
+            },
+            "SimulationComponentsOverrides": {
+
+            }
+        }
+    ]
+}
+

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Client" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Project" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+					<Add directory="include/common/core" />
+					<Add directory="include/client/components" />
+				</Compiler>
+				<ExtraCommands>
+					<Add after='ln -sfn &quot;$(PROJECT_DIR)/assets&quot; &quot;$(TARGET_OUTPUT_DIR)/assets&quot;' />
+					<Mode after="always" />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Project" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+					<Add directory="include/client" />
+					<Add directory="include/client/app" />
+					<Add directory="include/common/core" />
+					<Add directory="include/client/components" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after='cp -r &quot;$(PROJECT_DIR)/assets&quot; &quot;$(TARGET_OUTPUT_DIR)/&quot;' />
+					<Mode after="always" />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="external/enet/include" />
+			<Add directory="external/raylib-cpp/include" />
+			<Add directory="external/raylib/src" />
+			<Add directory="external/json/include" />
+		</Compiler>
+		<Linker>
+			<Add option="-lGL" />
+			<Add option="-lX11" />
+			<Add option="-lXrandr" />
+			<Add option="-lXi" />
+			<Add option="-lXcursor" />
+			<Add option="-lpthread" />
+			<Add option="-ldl" />
+			<Add option="-lm" />
+			<Add library="external/raylib/src/libraylib.a" />
+			<Add library="external/enet/.libs/libenet.a" />
+		</Linker>
+		<UnitsGlob directory="src/common" wildcard="" recursive="1" id="2236934382" addToProject="1">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</UnitsGlob>
+		<UnitsGlob directory="src/client" wildcard="" recursive="1" id="2740453936" addToProject="1">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</UnitsGlob>
+		<UnitsGlob directory="include/common" wildcard="" recursive="1" id="2914503856" addToProject="1">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</UnitsGlob>
+		<UnitsGlob directory="include/client" wildcard="" recursive="1" id="3332442258" addToProject="1">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</UnitsGlob>
+		<Unit filename="include/client/core/Scene.hpp">
+			<Option glob="3332442258" />
+		</Unit>
+		<Unit filename="include/common/components/SpriteRenderer.hpp">
+			<Option glob="2914503856" />
+		</Unit>
+		<Unit filename="include/common/core/Component.hpp">
+			<Option glob="2914503856" />
+		</Unit>
+		<Unit filename="include/common/core/Config.hpp">
+			<Option glob="2914503856" />
+		</Unit>
+		<Unit filename="include/common/core/EngineRegistry.hpp">
+			<Option glob="2914503856" />
+		</Unit>
+		<Unit filename="include/common/core/Game.hpp">
+			<Option glob="2914503856" />
+		</Unit>
+		<Unit filename="include/common/core/GameObject.hpp">
+			<Option glob="2914503856" />
+		</Unit>
+		<Unit filename="include/common/core/IDGenerator.hpp">
+			<Option glob="2914503856" />
+		</Unit>
+		<Unit filename="include/common/core/JSONExtensions.hpp">
+			<Option glob="2914503856" />
+		</Unit>
+		<Unit filename="include/common/core/RaylibExtensions.hpp">
+			<Option glob="2914503856" />
+		</Unit>
+		<Unit filename="include/common/core/SceneComponent.hpp">
+			<Option glob="2914503856" />
+		</Unit>
+		<Unit filename="include/common/core/Simulation.hpp" />
+		<Unit filename="include/common/core/SimulationComponent.hpp">
+			<Option glob="2914503856" />
+		</Unit>
+		<Unit filename="include/common/core/World.hpp">
+			<Option glob="2914503856" />
+		</Unit>
+		<Unit filename="src/client/core/Scene.cpp">
+			<Option glob="2740453936" />
+		</Unit>
+		<Unit filename="src/client/core/main.cpp">
+			<Option glob="2740453936" />
+		</Unit>
+		<Unit filename="src/common/components/SpriteRenderer.cpp">
+			<Option glob="2236934382" />
+		</Unit>
+		<Unit filename="src/common/core/Component.cpp">
+			<Option glob="2236934382" />
+		</Unit>
+		<Unit filename="src/common/core/Config.cpp">
+			<Option glob="2236934382" />
+		</Unit>
+		<Unit filename="src/common/core/EngineRegistry.cpp">
+			<Option glob="2236934382" />
+		</Unit>
+		<Unit filename="src/common/core/Game.cpp">
+			<Option glob="2236934382" />
+		</Unit>
+		<Unit filename="src/common/core/GameObject.cpp">
+			<Option glob="2236934382" />
+		</Unit>
+		<Unit filename="src/common/core/SceneComponent.cpp">
+			<Option glob="2236934382" />
+		</Unit>
+		<Unit filename="src/common/core/Simulation.cpp" />
+		<Unit filename="src/common/core/SimulationComponent.cpp">
+			<Option glob="2236934382" />
+		</Unit>
+		<Unit filename="src/common/core/World.cpp">
+			<Option glob="2236934382" />
+		</Unit>
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

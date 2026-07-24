@@ -1,0 +1,51 @@
+todo
+
+* send input to a class that redirects to
+    - the Simulation, either to server via ENet when multiplayer or locally when single player.
+    - the UI, locally.
+  a Input Map maps keys to Simulation, UI or both.
+
+
+
+
+note:
+the server must be headless, thus it cannot include raylib. it can however include e.g. rmath.
+
+
+Since the server must be headless, it cannot be aware of client components since they have a draw function, which (if used) will make use of raylib's drawing api.
+Thus, components are either ClientComponents or ServerComponents, which makes the interfaces IClientComponent and IServerComponent redundant.
+
+
+Should there be two different Game classes? One for client, and one for server?
+If both client and server use the same Game class, the server will include client files such as Scene.hpp, which include raylib functionality and thus cannot be headless.
+
+
+
+How Simulation works:
+
+If played locally:
+Input is sent to Simulation directly, on client
+Simulation updates the World, on client
+
+If played online:
+Input is sent to Simulation via ENet, on server
+Simulation updates the World, on server.
+World replicates itself to the clients via ENet.
+
+
+
+
+
+How networking (in this engine) works:
+
+each frame (unrealiable):
+* client->server packet data is a struct that contains the client's GameObject ID and relevant input (e.g. bool jump, float moveX).
+* server->(all?) client packet data is a struct that contains relevant updated property values of all GameObject's (or only the GameObject's that satisfy conditions such as being close enough?) such as position.
+
+special occasions (reliable):
+* client->server(middle man)->all clients, e.g. when changing name, sending chat message. (via 'broadcast')
+
+Channel 0: reliable
+e.g. chat (client->server, server->client)
+Channel 1: unreliable
+e.g. input (client->server), positions (server->client)
