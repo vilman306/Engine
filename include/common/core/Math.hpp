@@ -1,10 +1,6 @@
 #ifndef MATH_HPP_INCLUDED
 #define MATH_HPP_INCLUDED
 
-#include <Vector2.hpp>
-#include <Vector3.hpp>
-#include <Vector4.hpp>
-
 namespace Math
 {
 

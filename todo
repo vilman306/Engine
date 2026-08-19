@@ -49,3 +49,9 @@ Channel 0: reliable
 e.g. chat (client->server, server->client)
 Channel 1: unreliable
 e.g. input (client->server), positions (server->client)
+
+
+
+
+macros: CLIENT, SERVER
+The server should not even know that client specific things exist, such as SceneComponents. Thus, '#ifdef CLIENT' is written in all common files around all client specific things

@@ -47,9 +47,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add directory="external/enet/include" />
-			<Add directory="external/raylib-cpp/include" />
-			<Add directory="external/raylib/src" />
 			<Add directory="external/json/include" />
+			<Add directory="external/SDL-release-3.4.12/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-lGL" />
@@ -60,8 +59,8 @@
 			<Add option="-lpthread" />
 			<Add option="-ldl" />
 			<Add option="-lm" />
-			<Add library="external/raylib/src/libraylib.a" />
 			<Add library="external/enet/.libs/libenet.a" />
+			<Add library="external/SDL-release-3.4.12/build/libSDL3.a" />
 		</Linker>
 		<UnitsGlob directory="src/common" wildcard="" recursive="1" id="2236934382" addToProject="1">
 			<Option target="Debug" />
@@ -79,11 +78,14 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</UnitsGlob>
-		<Unit filename="include/client/core/Scene.hpp">
+		<Unit filename="include/client/components/SpriteRenderer.hpp">
 			<Option glob="3332442258" />
 		</Unit>
-		<Unit filename="include/common/components/SpriteRenderer.hpp">
-			<Option glob="2914503856" />
+		<Unit filename="include/client/core/ClientGame.hpp">
+			<Option glob="3332442258" />
+		</Unit>
+		<Unit filename="include/client/core/Scene.hpp">
+			<Option glob="3332442258" />
 		</Unit>
 		<Unit filename="include/common/core/Component.hpp">
 			<Option glob="2914503856" />
@@ -92,9 +94,6 @@
 			<Option glob="2914503856" />
 		</Unit>
 		<Unit filename="include/common/core/EngineRegistry.hpp">
-			<Option glob="2914503856" />
-		</Unit>
-		<Unit filename="include/common/core/Game.hpp">
 			<Option glob="2914503856" />
 		</Unit>
 		<Unit filename="include/common/core/GameObject.hpp">
@@ -106,27 +105,38 @@
 		<Unit filename="include/common/core/JSONExtensions.hpp">
 			<Option glob="2914503856" />
 		</Unit>
-		<Unit filename="include/common/core/RaylibExtensions.hpp">
+		<Unit filename="include/common/core/Math.hpp">
+			<Option glob="2914503856" />
+		</Unit>
+		<Unit filename="include/common/core/RayMathExtensions.hpp">
 			<Option glob="2914503856" />
 		</Unit>
 		<Unit filename="include/common/core/SceneComponent.hpp">
 			<Option glob="2914503856" />
 		</Unit>
-		<Unit filename="include/common/core/Simulation.hpp" />
+		<Unit filename="include/common/core/Simulation.hpp">
+			<Option glob="2914503856" />
+		</Unit>
 		<Unit filename="include/common/core/SimulationComponent.hpp">
+			<Option glob="2914503856" />
+		</Unit>
+		<Unit filename="include/common/core/Time.hpp">
 			<Option glob="2914503856" />
 		</Unit>
 		<Unit filename="include/common/core/World.hpp">
 			<Option glob="2914503856" />
+		</Unit>
+		<Unit filename="src/client/components/SpriteRenderer.cpp">
+			<Option glob="2740453936" />
+		</Unit>
+		<Unit filename="src/client/core/ClientGame.cpp">
+			<Option glob="2740453936" />
 		</Unit>
 		<Unit filename="src/client/core/Scene.cpp">
 			<Option glob="2740453936" />
 		</Unit>
 		<Unit filename="src/client/core/main.cpp">
 			<Option glob="2740453936" />
-		</Unit>
-		<Unit filename="src/common/components/SpriteRenderer.cpp">
-			<Option glob="2236934382" />
 		</Unit>
 		<Unit filename="src/common/core/Component.cpp">
 			<Option glob="2236934382" />
@@ -137,17 +147,19 @@
 		<Unit filename="src/common/core/EngineRegistry.cpp">
 			<Option glob="2236934382" />
 		</Unit>
-		<Unit filename="src/common/core/Game.cpp">
-			<Option glob="2236934382" />
-		</Unit>
 		<Unit filename="src/common/core/GameObject.cpp">
 			<Option glob="2236934382" />
 		</Unit>
 		<Unit filename="src/common/core/SceneComponent.cpp">
 			<Option glob="2236934382" />
 		</Unit>
-		<Unit filename="src/common/core/Simulation.cpp" />
+		<Unit filename="src/common/core/Simulation.cpp">
+			<Option glob="2236934382" />
+		</Unit>
 		<Unit filename="src/common/core/SimulationComponent.cpp">
+			<Option glob="2236934382" />
+		</Unit>
+		<Unit filename="src/common/core/Time.cpp">
 			<Option glob="2236934382" />
 		</Unit>
 		<Unit filename="src/common/core/World.cpp">

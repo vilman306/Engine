@@ -1,5 +1,4 @@
 #include "common/core/World.hpp"
-//#include "client/components/SpriteRenderer.hpp"
 #include "common/core/Config.hpp"
 #include <fstream>
 #include <nlohmann/json.hpp>

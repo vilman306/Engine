@@ -11,7 +11,7 @@ public:
     SpriteRenderer();
     virtual ~SpriteRenderer();
 
-    const raylib::Texture& GetTexture()
+    const raylib::Texture& GetTexture() // TODO
     {
         return m_Texture;
     }
