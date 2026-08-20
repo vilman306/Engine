@@ -49,6 +49,7 @@
 			<Add directory="external/enet/include" />
 			<Add directory="external/json/include" />
 			<Add directory="external/SDL-release-3.4.12/include" />
+			<Add directory="external/glm/glm" />
 		</Compiler>
 		<Linker>
 			<Add option="-lGL" />
@@ -123,6 +124,7 @@
 		<Unit filename="include/common/core/Time.hpp">
 			<Option glob="2914503856" />
 		</Unit>
+		<Unit filename="include/common/core/Transform.hpp" />
 		<Unit filename="include/common/core/World.hpp">
 			<Option glob="2914503856" />
 		</Unit>

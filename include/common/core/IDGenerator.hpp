@@ -17,7 +17,7 @@ public:
     }
 
 private:
-    static inline uint32_t NextID = 0;
+    inline static uint32_t NextID = 0;
 };
 
 #endif // IDGENERATOR_HPP_INCLUDED

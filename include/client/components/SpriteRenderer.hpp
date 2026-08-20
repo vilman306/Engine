@@ -2,20 +2,22 @@
 #define SPRITERENDERER_HPP
 
 #include "common/core/Component.hpp"
-#include <raylib-cpp.hpp>
+#include "common/components/Transform.hpp"
 #include "common/core/SceneComponent.hpp"
+
+struct TextureDeleter
+{
+    void operator()(SDL_Texture* texture){
+        SDL_DestroyTexture(texture);
+    }
+};
 
 class SpriteRenderer : public SceneComponent
 {
 public:
-    SpriteRenderer();
+    SpriteRenderer(SDL_Renderer* renderer) : SceneComponent(renderer) // forward renderer to SceneComponent
+    {};
     virtual ~SpriteRenderer();
-
-    const raylib::Texture& GetTexture() // TODO
-    {
-        return m_Texture;
-    }
-    void SetTexture(const std::string& path);
 
     virtual void ApplyDefaults(const nlohmann::json& defaultsJson) override;
 
@@ -25,10 +27,18 @@ public:
 
     virtual void Draw() override;
 
+    SDL_Texture* GetTexture() { return m_Texture.get(); }
+
+    void SetTexture(const std::string& fileName); // Loads image (png) to GPU
+
+
+
 
 private:
     Transform m_Transform;
-    raylib::Texture m_Texture;
+    std::unique_ptr<SDL_Texture, TextureDeleter> m_Texture;
+    int m_Width = 0;
+    int m_Height = 0;
 };
 
 #endif // SPRITERENDERER_HPP

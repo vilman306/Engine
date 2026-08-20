@@ -6,11 +6,11 @@
 #include <cassert>
 #include "common/core/EngineRegistry.hpp"
 #include "common/core/JSONExtensions.hpp"
-#include "common/core/RayMathExtensions.hpp"
+#include "common/core/GlmUtils.hpp"
 
 World::World()
 {
-    LoadLevel("level_start.json");
+
 }
 
 World::~World()
@@ -38,14 +38,14 @@ void World::LoadLevelImpl(const std::string& LevelFileName)
     // Load the file 'assets/data/prefabs.json' and store its data
     std::ifstream prefabsFile(Config::PrefabsPath);
     if (prefabsFile.fail())
-        throw std::runtime_error("ERROR: Could not open " + Config::PrefabsPath.string());
+        throw std::runtime_error("Could not open " + Config::PrefabsPath.string());
     nlohmann::json prefabsJson = JsonUtils::GetFromJson<nlohmann::json>(nlohmann::json::parse(prefabsFile), "Prefabs");
 
     // Load the file 'assets/data/levels/LevelFileName' and store its data
     std::filesystem::path levelPath = Config::AssetsPath / "data/levels" / LevelFileName;
     std::ifstream levelFile(levelPath);
     if (levelFile.fail())
-        throw std::invalid_argument("ERROR: Could not open " + levelPath.string());
+        throw std::invalid_argument("Could not open " + levelPath.string());
     nlohmann::json levelJson = nlohmann::json::parse(levelFile);
 
     // Create local storage of the level's GameObjects. This will be moved to m_GameObjects if everything succeeds.
@@ -65,13 +65,13 @@ void World::LoadLevelImpl(const std::string& LevelFileName)
         nlohmann::json transformJson = JsonUtils::GetFromJson<nlohmann::json>(gameObjectJson, "Transform");
         // Position
         std::vector<float> position = JsonUtils::GetFromJson<std::vector<float>>(transformJson, "Position");
-        gameObject->transform.translation = RayUtils::RaylibVector3FromStdVector(position);
+        gameObject->SetPosition(GlmUtils::Vec3FromStdVector(position));
         // Rotation
         std::vector<float> rotation = JsonUtils::GetFromJson<std::vector<float>>(transformJson, "Rotation");
-        gameObject->transform.rotation = RayUtils::RaylibQuaternionFromStdVector(rotation);
+        gameObject->SetRotation(GlmUtils::QuatFromStdVector(rotation));
         // Scale
         std::vector<float> scale = JsonUtils::GetFromJson<std::vector<float>>(transformJson, "Scale");
-        gameObject->transform.scale = RayUtils::RaylibVector3FromStdVector(scale);
+        gameObject->SetScale(GlmUtils::Vec3FromStdVector(scale));
         // Get the Prefab data
         nlohmann::json prefabJson = JsonUtils::GetChildJsonFromKeyValuePair<std::string>(prefabsJson, "Name", prefabName);
         // Get the GameObject's override values for all of its SceneComponents and SimulationComponents
@@ -83,6 +83,8 @@ void World::LoadLevelImpl(const std::string& LevelFileName)
         {
             // Create the component
             std::string componentName = JsonUtils::GetFromJson<std::string>(componentJson, "Name");
+            if (!EngineRegistry::SceneComponents.contains(componentName))
+                throw std::runtime_error("The SceneComponent '" + componentName + "' is not in the EngineRegistry.");
             std::unique_ptr<SceneComponent> component = EngineRegistry::SceneComponents[componentName]();
             // Apply default component values
             nlohmann::json defaultsJson = JsonUtils::GetFromJson<nlohmann::json>(componentJson, "Defaults");

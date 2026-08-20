@@ -1,4 +1,4 @@
-#define CLIENT
+//#define CLIENT // moved to Code::Blocks build settings
 #define SDL_MAIN_USE_CALLBACKS 1
 
 #include <SDL3/SDL_init.h>
@@ -14,8 +14,6 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
 {
     Config::SetupPaths();
 
-    EngineRegistry::RegisterSceneComponents();
-
     ClientGame* game = new ClientGame();
     *appstate = game;
 
@@ -29,6 +27,10 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
         std::cout << "ERROR: " << e.what() << std::endl;
         return SDL_APP_FAILURE;
     }
+
+    EngineRegistry::RegisterSceneComponents();
+
+    game->GetWorld().LoadLevel("level_start.json");
 
     return SDL_APP_CONTINUE;
 }

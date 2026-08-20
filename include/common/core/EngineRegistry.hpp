@@ -14,6 +14,9 @@ namespace EngineRegistry
     // Used to register SceneComponents so that they can be added from their names
     extern std::unordered_map< std::string, std::function< std::unique_ptr<SceneComponent>() > > SceneComponents;
     void RegisterSceneComponents();
+
+    inline SDL_Renderer* SceneRenderer = nullptr;
+    void SetRenderer(SDL_Renderer* renderer);
     #endif
 }
 

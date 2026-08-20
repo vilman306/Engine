@@ -1,5 +1,7 @@
 #include "client/core/Scene.hpp"
 #include "common/core/Config.hpp"
+#include <SDL3/SDL_init.h>
+#include "common/core/EngineRegistry.hpp"
 
 Scene::Scene(World& p_World) : m_World(p_World)
 {
@@ -21,7 +23,13 @@ Scene::Scene(World& p_World) : m_World(p_World)
         m_IsValid = false;
     }
     m_Window.reset(window);
+    SetRenderer(renderer);
+}
+
+void Scene::SetRenderer(SDL_Renderer* renderer)
+{
     m_Renderer.reset(renderer);
+    EngineRegistry::SceneRenderer = renderer;
 }
 
 Scene::~Scene()
@@ -43,7 +51,10 @@ void Scene::Update(double dt)
 
 void Scene::Draw()
 {
-    BeginDrawing();
+    // Clear
+    SDL_SetRenderDrawColorFloat(m_Renderer.get(), 0.25f, 0.25f, 0.25f, SDL_ALPHA_OPAQUE_FLOAT);
+    SDL_RenderClear(m_Renderer.get());
+
 
     // Call Draw on all client components
     for (auto& [id, object] : m_World.GetObjects())
@@ -54,5 +65,6 @@ void Scene::Draw()
         }
     }
 
-    EndDrawing();
+    // Draw to screen
+    SDL_RenderPresent(m_Renderer.get());
 }

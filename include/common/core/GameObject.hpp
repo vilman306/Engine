@@ -8,7 +8,7 @@
 #include <iostream>
 #include "common/core/SceneComponent.hpp"
 #include "common/core/SimulationComponent.hpp"
-#include "common/core/Math.hpp"
+#include "common/components/Transform.hpp"
 
 // A GameObject is an object that can be added to World.
 // It contains data only; all logic is written in Components.
@@ -79,9 +79,14 @@ public:
     {
         return m_SimulationComponents;
     }
-    std::string Name;
 
-    Math::Transform transform;
+    Transform GetTransform() {return m_Transform;}
+    void SetTransform(Transform p_Transform) {m_Transform = p_Transform;}
+    void SetPosition(glm::vec3 position) {m_Transform.Position = position;}
+    void SetRotation(glm::quat rotation) {m_Transform.Rotation = rotation;}
+    void SetScale(glm::vec3 scale) {m_Transform.Scale = scale;}
+
+    std::string Name;
 
 private:
     // Creates and adds a new Component of type T (e.g. SpriteRenderer) to the container p_ComponentContainer
@@ -107,6 +112,7 @@ private:
         return component;
     }
 
+    Transform m_Transform;
     const uint32_t m_ID;
     std::vector<std::unique_ptr<SceneComponent>> m_SceneComponents;
     std::vector<std::unique_ptr<SimulationComponent>> m_SimulationComponents;

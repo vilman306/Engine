@@ -23,7 +23,7 @@ ClientGame::~ClientGame()
 //    }
 //}
 
-void Game::Update()
+void ClientGame::Update()
 {
     double currentTime = static_cast<double>(SDL_GetPerformanceCounter()) / SDL_GetPerformanceCounter();
     static double previousTime = currentTime;

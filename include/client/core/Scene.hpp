@@ -39,6 +39,7 @@ public:
 
     bool IsValid() const { return m_IsValid; }
 
+    void SetRenderer(SDL_Renderer* renderer);
 
 
 protected:
